@@ -1,9 +1,15 @@
-function App() {
+// src/App.js
+//import React from 'react';
+
+import Header from "./components/header/Header";
+
+
+const App = () => {
   return (
-    <>
-      <h1>Games !</h1>
-    </>
+    <div>
+      <Header />
+    </div>
   );
-}
+};
 
 export default App;
