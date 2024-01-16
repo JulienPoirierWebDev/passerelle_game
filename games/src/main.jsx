@@ -5,13 +5,14 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {store} from './store/store.js'
 import {Provider} from 'react-redux'
+import HomePage from './pages/home/index.jsx'
 
 
 const router = createBrowserRouter([
   {  
   // errorElement: <ErrorPage />,
   children: [
-    { path: "/", element: <App /> },
+    { path: "/", element: <HomePage/> },
   ],
     
     
