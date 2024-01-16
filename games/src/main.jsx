@@ -11,12 +11,7 @@ const router = createBrowserRouter([
   // errorElement: <ErrorPage />,
   children: [
     { path: "/", element: <App /> },
-    // { path: "/nos-produits", element: <ProductsPage /> },
-    // { path: "/produit/:id", element: <ProductPage /> },
-    // { path: "/panier", element: <CartPage /> },
-    // { path: "/connexion", element: <LoginPage /> },
-    // { path: "/inscription", element: <RegisterPage /> },
-    // { path: "/mon-compte", element: <AccountPage /> },
+ 
   ],
     
     
