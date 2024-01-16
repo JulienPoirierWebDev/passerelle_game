@@ -1,13 +1,19 @@
 import React from 'react';
 import Header from './components/Header/Header';
 
-function App() {
+
+
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+
+const App = () => {
   return (
-    <>
+    <div>
       <Header />
-      <h1>Games !</h1>
-    </>
+      <Footer />
+    </div>
+
   );
-}
+};
 
 export default App;
