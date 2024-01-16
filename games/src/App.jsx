@@ -1,8 +1,8 @@
+import Footer from "./components/footer/Footer";
+
 function App() {
   return (
-    <>
-      <h1>Games !</h1>
-    </>
+      <Footer />
   );
 }
 
