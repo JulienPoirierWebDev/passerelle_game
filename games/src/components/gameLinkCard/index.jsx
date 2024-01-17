@@ -17,7 +17,8 @@ const GameLinkCard = () => {
                   <Link to={element.path} key={element.path}>
                     {element.name}
                     </Link>
-                );})}
+                );
+                })}
             </ul>
         </div>
         </>)
