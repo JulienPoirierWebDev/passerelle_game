@@ -1,4 +1,4 @@
-import GameLinkCard from "../../components/gameLinkCard/index.jsx";
+import GameLinkCard from "../../components/gameLinkCard";
 
 const HomePage = () => {
   return (

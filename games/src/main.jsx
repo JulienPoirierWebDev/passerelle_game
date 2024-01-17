@@ -6,6 +6,7 @@ import {store} from './store/store.js'
 import {Provider} from 'react-redux'
 import Layout from '../layout/Layout.jsx'
 import HomePage from './pages/home/index.jsx'
+import ChifumiGame from './pages/chifumi/index.jsx';
 
 
 const router = createBrowserRouter([
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   element: <Layout />,
   children: [
     { path: "/", element: <HomePage/> },
+    { path: "/chifumi", element: <ChifumiGame /> }
   ],
     
     
