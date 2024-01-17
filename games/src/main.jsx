@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {store} from './store/store.js'
 import {Provider} from 'react-redux'
+import Layout from '../layout/Layout.jsx'
 import HomePage from './pages/home/index.jsx'
 import GameSimon from './components/gameSimon/GameSimon.jsx'
 import ChifumiGame from './pages/chifumi/index.jsx';
@@ -12,10 +12,10 @@ import ChifumiGame from './pages/chifumi/index.jsx';
 
 const router = createBrowserRouter([
   {  
-  // errorElement: <ErrorPage />,
+  element: <Layout />,
   children: [
     { path: "/", element: <HomePage/> },
-    {path: "/GameSimon", element: <App/>},
+    {path: "/simon", element: <GameSimon/>},
     { path: "/chifumi", element: <ChifumiGame /> }
     ],
   }
