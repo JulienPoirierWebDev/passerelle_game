@@ -9,6 +9,7 @@ import Layout from "./layout/Layout.jsx";
 import HomePage from "./pages/home/index.jsx";
 import GameSimon from "./components/gameSimon/GameSimon.jsx";
 import ChifumiGame from "./pages/chifumi/index.jsx";
+import ProposPage from "./pages/apropos/ProposPage.jsx";
 
 
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/simon", element: <GameSimon /> },
       { path: "/chifumi", element: <ChifumiGame /> },
+      { path: "/apropos", element: <ProposPage /> },
     ],
   },
 ]);
