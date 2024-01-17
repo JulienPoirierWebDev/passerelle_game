@@ -1,22 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Footer from "../src/components/footer/Footer.jsx";
-import Header from "../src/components/header/Header";
+import Header from "../src/components/Header/Header.jsx";
 
 
 const Layout = () => {
 
-    const paths = [
-        {
-            path: '/',
-            name: 'Accueil'
-        }
-    ]
     return (
     <>
-        <div className="flex gap-10 w-full">
-            <Link to={paths.path}>Logo</Link>
-            <Header/>
-        </div>
+        <Header/>
         <Outlet/>
         <Footer/>
     </>

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo/logo.png";
 
 const Header = () => {
   const paths = [
@@ -18,7 +17,10 @@ const Header = () => {
   ]
   return (
    <>
-   <div className="navbar">
+   <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <div>
+      <Link to="/"><img src='../src/assets/logo/logo.png' alt="logo" className="h-12" /></Link>
+    </div>
     <ul className="flex gap-10">
       {paths.map((element) => {
         return (
@@ -26,7 +28,7 @@ const Header = () => {
         )
       })}
     </ul>
-   </div>
+   </header>
    </>
   )
 }
