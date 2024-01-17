@@ -5,7 +5,13 @@ const GameLinkCard = () => {
         {
           path: "/",
           name: "Accueil",
+          
         },
+
+        {
+          path: "/GameSimon",
+          name: "GameSimon",
+        }
       ];
 
       return (
