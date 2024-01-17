@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {store} from './store/store.js'
@@ -15,7 +14,7 @@ const router = createBrowserRouter([
   // errorElement: <ErrorPage />,
   children: [
     { path: "/", element: <HomePage/> },
-    {path: "/GameSimon", element: <App/>},
+    {path: "/simon", element: <GameSimon/>},
     { path: "/chifumi", element: <ChifumiGame /> }
     ],
   }
