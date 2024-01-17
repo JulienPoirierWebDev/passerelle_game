@@ -19,6 +19,11 @@ export const chifumiGameSlice = createSlice({
         setResult: (state, action) => {
             state.result = action.payload;
         },
+        reset: (state) => {
+            state.playerChoice = null;
+            state.computerChoice = null;
+            state.result = null;
+        }
     },
 })
 
