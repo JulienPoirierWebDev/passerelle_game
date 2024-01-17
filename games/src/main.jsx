@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {store} from './store/store.js'
 import {Provider} from 'react-redux'
 import HomePage from './pages/home/index.jsx'
+import GameSimon from './components/gameSimon/GameSimon.jsx'
 
 
 const router = createBrowserRouter([
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   // errorElement: <ErrorPage />,
   children: [
     { path: "/", element: <HomePage/> },
+    {path: "/GameSimon", element: <App/>},
   ],
     
     
