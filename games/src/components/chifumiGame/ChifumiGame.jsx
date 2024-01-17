@@ -53,3 +53,4 @@ const ChifumiGame = () => {
 };
 
 export default ChifumiGame;
+
