@@ -51,25 +51,29 @@ function Listing  () {
  };
     
     return(
-       <div className="px-4 py-32 bg-black max-auto">
-            <div className="text-white text-center">
-                <h1 className="text-5 lg:text-7x1 leading-snug font-bold mb-5">welcome to the developers page</h1>
-            </div>
-          
-            <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8 ">
-                {state.dev.map((dev) => {
-                    return (
-                        <>
-                        <div>
-                          <img src={dev.img} alt="" className="w-full"/>
-                       </div>
-                       <h2 className="mt-4 mb-2 font-bold">{dev.name}</h2>
-                       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum iusto quis repellat inventore numquam eaque pariatur ducimus maxime voluptatum neque harum repellendus rem, corrupti eum ut at quos reiciendis repudiandae?</p>
-                       <h3>Mon git-up:{dev.link}</h3>
-                       </>
-                    );
-                })} 
+       <div className="min-h-screen container mx-auto">
+            <div >
+                <div className="card">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                            {state.dev.map((dev) => {
+                                return (
+                                    <>
+                                        <div>
+                                            <div className="rounded-xl overflow-hidden">
+                                            <img src={dev.img} alt="" />
+                                            </div>
+                                            <h2 className="text-2xl md:text-3xl mt-3 font-medium">{dev.name}</h2>
+                                            <p className="text-slate-500 text-lg mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum iusto quis repellat inventore numquam eaque pariatur ducimus maxime voluptatum neque harum repellendus rem, corrupti eum ut at quos reiciendis repudiandae?</p>
+                                            <a href={dev.link} className="text-center bg-blue-400 text-blue_800 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-300 focus:scale-95 transition-all">Mon git-up</a>
+                               
+                                        </div>
+                                   </>
+                                );
+                            })} 
+                    </div> 
+               </div>       
            </div>
+           
         </div>   
        
     )
