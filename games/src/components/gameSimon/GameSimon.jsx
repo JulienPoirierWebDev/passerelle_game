@@ -29,6 +29,7 @@ function GameSimon() {
     const color = colors[Math.floor(Math.random() * 4)]; // Choix aléatoire d'une couleur
     const newSequence = [...sequence, color]; // Ajout de la couleur à la séquence existante
     setSequence(newSequence);
+    
   };
 
   // Fonction pour passer au niveau suivant du jeu
@@ -43,14 +44,16 @@ function GameSimon() {
   const handleColorClick = (e) => {
     if (playing) {
       e.target.classList.add("opacity-50"); // Ajoute une classe pour indiquer le clic
-
+        console.log(e.target.getAttribute("color"));
       setTimeout(() => {
         e.target.classList.remove("opacity-50"); // Retire la classe après un court délai
 
-        const clickColor = e.target.getAttribute("color");
-
+        const clickColor = e.target.dataset.color;
+          console.log(e.target);
+        
         // Vérifie si la couleur cliquée est correcte dans la séquence
         if (sequence[playingIdx] === clickColor) {
+        
           // Vérifie si c'est la dernière couleur de la séquence
           if (playingIdx === sequence.length - 1) {
             // Passe au niveau suivant après un court délai
@@ -65,7 +68,8 @@ function GameSimon() {
         } else {
           // Réinitialise le jeu en cas de clic incorrect
           resetGame();
-          // alert("You Lost!");
+           alert("You Lost!");
+           
         }
       }, 250);
     }
@@ -79,7 +83,10 @@ function GameSimon() {
 
         // Associe la référence au bouton de couleur approprié dans la séquence
         if (sequence[idx] === "green") ref = greenRef;
-        if (sequence[idx] === "red") ref = redRef;
+        if (sequence[idx] === "red")  {
+          ref = redRef;
+          console.log('ref'+redRef);
+        }
         if (sequence[idx] === "yellow") ref = yellowRef;
         if (sequence[idx] === "blue") ref = blueRef;
 
@@ -111,6 +118,7 @@ function GameSimon() {
         <div>
           {/* Bouton vert */}
           <GameBtn
+            id="greenBtn"
             color="green"
             border="rounded-tl-full"
             bg="bg-green-500"
@@ -120,6 +128,7 @@ function GameSimon() {
 
           {/* Bouton rouge */}
           <GameBtn
+          id="redBtn"
             color="red"
             border="rounded-tr-full"
             bg="bg-red-500"
@@ -132,6 +141,7 @@ function GameSimon() {
         <div>
           {/* Bouton jaune */}
           <GameBtn
+            id="yellowBtn"
             color="yellow"
             border="rounded-bl-full"
             bg="bg-yellow-400"
@@ -141,6 +151,7 @@ function GameSimon() {
 
           {/* Bouton bleu */}
           <GameBtn
+            id="blueBtn"
             color="blue"
             border="rounded-br-full"
             bg="bg-blue-500"
