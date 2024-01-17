@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {store} from './store/store.js'
 import {Provider} from 'react-redux'
 import HomePage from './pages/home/index.jsx'
-import GameSimon from './components/gameSimon/GameSimon.jsx'
+//import GameSimon from './components/gameSimon/GameSimon.jsx'
 import ChifumiGame from './pages/chifumi/index.jsx';
 
 
