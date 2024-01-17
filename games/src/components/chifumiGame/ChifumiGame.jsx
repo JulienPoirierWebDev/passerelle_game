@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import ChoiceButton from '../choiceButton/ChoiceButton';
+import { useSelector, useDispatch } from 'react-redux'
+import {setPlayerChoice, setComputerChoice, setResult } from '../../features/chifumi/chifumiGameSlice';
 
 const ChifumiGame = () => {
-  const [playerChoice, setPlayerChoice] = useState(null);
-  const [computerChoice, setComputerChoice] = useState(null);
-  const [result, setResult] = useState(null);
-
+  const playerChoice = useSelector((state) => state.chifumiGame.playerChoice);
+  const computerChoice = useSelector((state) => state.chifumiGame.computerChoice);
+  const result = useSelector((state) => state.chifumiGame.result);
+  const dispatch = useDispatch();
   const choices = ['pierre', 'feuille', 'ciseaux'];
 
   const getRandomChoice = () => {
@@ -15,19 +16,21 @@ const ChifumiGame = () => {
 
   const handlePlayerChoice = (choice) => {
     const computerChoice = getRandomChoice();
-    setPlayerChoice(choice);
-    setComputerChoice(computerChoice);
+    dispatch(setPlayerChoice(choice));
+    dispatch(setComputerChoice(choice));
 
     if (choice === computerChoice) {
-      setResult("Egalité!");
+      dispatch(setResult("Egalité!"));
     } else if (
       (choice === 'pierre' && computerChoice === 'ciseaux') ||
       (choice === 'feuille' && computerChoice === 'pierre') ||
       (choice === 'ciseaux' && computerChoice === 'feuille')
-    ) {
-      setResult('Tu gagnes!');
+    ){
+        dispatch(setResult('Tu gagnes!'))
+
     } else {
-      setResult('l\'ordi gagne!');
+        dispatch(setResult('l\'ordi gagne!'));
+
     }
   };
 
@@ -35,9 +38,9 @@ const ChifumiGame = () => {
     <div>
       <h1>Chifoumi Game</h1>
       <div>
-        <p>Your Choice: {playerChoice}</p>
-        <p>Computer's Choice: {computerChoice}</p>
-        <p>Result: {result}</p>
+        <p>Votre choix: {playerChoice}</p>
+        <p>Le choix de l'ordi: {computerChoice}</p>
+        <p>quel est le resultat: {result}</p>
       </div>
       <div>
         <h2>Choose Your Weapon</h2>
@@ -53,4 +56,3 @@ const ChifumiGame = () => {
 };
 
 export default ChifumiGame;
-
