@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -8,6 +9,8 @@ import Layout from "./layout/Layout.jsx";
 import HomePage from "./pages/home/index.jsx";
 import GameSimon from "./components/gameSimon/GameSimon.jsx";
 import ChifumiGame from "./pages/chifumi/index.jsx";
+
+
 
 const router = createBrowserRouter([
   {
