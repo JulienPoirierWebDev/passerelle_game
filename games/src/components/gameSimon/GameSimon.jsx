@@ -48,8 +48,8 @@ function GameSimon() {
       setTimeout(() => {
         e.target.classList.remove("opacity-50"); // Retire la classe après un court délai
 
-        const clickColor = e.target.getAttribute("color");
-          console.log(clickColor);
+        const clickColor = e.target.dataset.color;
+          console.log(e.target);
         
         // Vérifie si la couleur cliquée est correcte dans la séquence
         if (sequence[playingIdx] === clickColor) {
