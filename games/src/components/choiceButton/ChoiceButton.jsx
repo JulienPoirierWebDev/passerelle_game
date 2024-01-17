@@ -1,6 +1,6 @@
-function ChoiceButton() {
+function ChoiceButton({children, bgColor, onClick}) {
   return (
-    <div>ChoiceButton</div>
+    <button className={`${bgColor} text-white  font-bold py-2 px-4 rounded`} type="button" onClick={onClick}>{children}</button>
   )
 }
 
