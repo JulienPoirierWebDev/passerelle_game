@@ -35,9 +35,9 @@ const ChifumiGame = () => {
     <div>
       <h1>Chifoumi Game</h1>
       <div>
-        <p>Your Choice: {playerChoice}</p>
-        <p>Computer's Choice: {computerChoice}</p>
-        <p>Result: {result}</p>
+        <p>Votre choix: {playerChoice}</p>
+        <p>Le choix de l'ordi: {computerChoice}</p>
+        <p>quel est le resultat: {result}</p>
       </div>
       <div>
         <h2>Choose Your Weapon</h2>
