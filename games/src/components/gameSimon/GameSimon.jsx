@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import GameBtn from "../gameBtn/GameBtn";
 
 // Définition des couleurs disponibles pour le jeu
