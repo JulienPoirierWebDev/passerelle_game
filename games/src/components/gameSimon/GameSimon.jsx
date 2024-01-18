@@ -10,13 +10,40 @@ function GameSimon() {
   const [sequence, setSequence] = useState([]); // Séquence de couleurs à mémoriser
   const [playing, setPlaying] = useState(false); // Indique si le joueur peut jouer
   const [playingIdx, setPlayingIdx] = useState(0); // Index de la couleur en cours dans la séquence
-
+  const [isFullScreen, setIsFullScreen] = useState(false); // Indique si le jeu est en plein écran
   // Références aux boutons de couleurs
   const greenRef = useRef(null);
   const redRef = useRef(null);
   const yellowRef = useRef(null);
   const blueRef = useRef(null);
 
+
+  // Créez une fonction pour activer le mode plein écran :
+  const enterFullScreen = () => {
+    const gameContainer = document.getElementById('game-container');
+    
+    if (gameContainer) {
+      if (gameContainer.requestFullscreen) {
+        gameContainer.requestFullscreen();
+      } else if (gameContainer.webkitRequestFullscreen) {
+        gameContainer.webkitRequestFullscreen();
+      } else if (gameContainer.msRequestFullscreen) {
+        gameContainer.msRequestFullscreen();
+      }
+  
+      setIsFullScreen(true);
+    }
+  };
+// permet de quitter le mode plein écran
+  const exitFullScreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
   // Fonction pour réinitialiser le jeu
   const resetGame = () => {
     setSequence([]); // Réinitialise la séquence
@@ -37,6 +64,7 @@ function GameSimon() {
     if (!playing) {
       setPlaying(true); // Active le jeu
       addNewColor(); // Ajoute une nouvelle couleur à la séquence
+      enterFullScreen(); // Active le mode plein écran
     }
   };
 
@@ -111,10 +139,10 @@ function GameSimon() {
   // Rendu du composant
   return (
     // Conteneur principal
-    <div className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
+    <div  className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
     min-[320px]:text-center ">
       {/* Conteneur du jeu */}
-      <div className="relative flex flex-col justify-center items-center">
+      <div id="game-container" className="relative flex flex-col justify-center items-center">
         {/* Conteneur pour les boutons verts et rouges */}
         <div>
           {/* Bouton vert */}
