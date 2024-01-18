@@ -5,6 +5,8 @@ import red from '../../../public/sound/red_simon.mp3'
 import blue from '../../../public/sound/blue_simon.mp3'
 import green from '../../../public/sound/green_simon.mp3'
 import yellow from '../../../public/sound/yellow_simon.mp3'
+import { useDispatch, useSelector } from "react-redux";
+import { setSequence, setPlaying, setPlayingIdx, reset } from "../../features/gameSimon/gameSimonSlice";
 
 // Définition des couleurs disponibles pour le jeu
 const colors = ["green", "red", "yellow", "blue"];
@@ -14,15 +16,18 @@ const colors = ["green", "red", "yellow", "blue"];
 
 // Définition du composant principal du jeu Simon
 function GameSimon() {
+  const dispatch = useDispatch();
+ 
+
    // Définition des différents sons associés aux couleurs
    const [redplay] = useSound(red);
    const [blueplay] = useSound(blue);
    const [greenplay] = useSound(green);
    const [yellowplay] = useSound(yellow);
   // États du jeu
-  const [sequence, setSequence] = useState([]); // Séquence de couleurs à mémoriser
-  const [playing, setPlaying] = useState(false); // Indique si le joueur peut jouer
-  const [playingIdx, setPlayingIdx] = useState(0); // Index de la couleur en cours dans la séquence
+  const sequence = useSelector((state) => state.gameSimon.sequence); // Séquence de couleurs à mémoriser
+  const playing = useSelector((state) => state.gameSimon.playing); // Indique si le joueur peut jouer
+  const playingIdx = useSelector((state) => state.gameSimon.playingIdx); // Index de la couleur en cours dans la séquence
   const [isFullScreen, setIsFullScreen] = useState(false); // Indique si le jeu est en plein écran
   // Références aux boutons de couleurs
   const greenRef = useRef(null);
@@ -57,25 +62,20 @@ function GameSimon() {
       document.msExitFullscreen();
     }
   }
-  // Fonction pour réinitialiser le jeu
-  const resetGame = () => {
-    setSequence([]); // Réinitialise la séquence
-    setPlaying(false); // Désactive le jeu
-    setPlayingIdx(0); // Réinitialise l'index de la séquence en cours
-  };
+
 
   // Fonction pour ajouter une nouvelle couleur à la séquence
   const addNewColor = () => {
     const color = colors[Math.floor(Math.random() * 4)]; // Choix aléatoire d'une couleur
     const newSequence = [...sequence, color]; // Ajout de la couleur à la séquence existante
-    setSequence(newSequence);
+    dispatch(setSequence(newSequence)); // Mise à jour de la séquence
     
   };
 
   // Fonction pour passer au niveau suivant du jeu
   const handleNextLevel = () => {
     if (!playing) {
-      setPlaying(true); // Active le jeu
+      dispatch (setPlaying(true)); // Active le jeu
       addNewColor(); // Ajoute une nouvelle couleur à la séquence
       enterFullScreen(); // Active le mode plein écran
     }
@@ -118,17 +118,18 @@ function GameSimon() {
           if (playingIdx === sequence.length - 1) {
             // Passe au niveau suivant après un court délai
             setTimeout(() => {
-              setPlayingIdx(0);
+              dispatch (setPlayingIdx(0));
               addNewColor();
             }, 250);
           } else {
             // Passe à la couleur suivante dans la séquence
-            setPlayingIdx(playingIdx + 1);
+            dispatch (setPlayingIdx((playingIdx + 1)));
           }
         } else {
           // Réinitialise le jeu en cas de clic incorrect
-          resetGame();
+          dispatch(reset()); // resetgame
            alert("You Lost!");
+           
            
         }
       }, 250);
