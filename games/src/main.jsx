@@ -9,7 +9,7 @@ import HomePage from "./pages/home/index.jsx";
 import GameSimon from "./components/gameSimon/GameSimon.jsx";
 import ChifumiGame from "./pages/chifumi/index.jsx";
 import ProposPage from "./pages/apropos/ProposPage.jsx";
-
+import TicTacToe from "./components/TicTacToe/TicTacToe.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/simon", element: <GameSimon /> },
       { path: "/chifumi", element: <ChifumiGame /> },
       { path: "/apropos", element: <ProposPage /> },
+      { path: "/tictactoe", element: <TicTacToe /> },
     ],
   },
 ]);
