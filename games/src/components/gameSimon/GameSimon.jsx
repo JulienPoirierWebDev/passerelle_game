@@ -139,10 +139,10 @@ function GameSimon() {
   // Rendu du composant
   return (
     // Conteneur principal
-    <div  className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
+    <div id="game-container" className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
     min-[320px]:text-center ">
       {/* Conteneur du jeu */}
-      <div id="game-container" className="relative flex flex-col justify-center items-center">
+      <div  className="relative flex flex-col justify-center items-center">
         {/* Conteneur pour les boutons verts et rouges */}
         <div>
           {/* Bouton vert */}
