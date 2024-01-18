@@ -111,7 +111,8 @@ function GameSimon() {
   // Rendu du composant
   return (
     // Conteneur principal
-    <div className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen">
+    <div className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
+    min-[320px]:text-center ">
       {/* Conteneur du jeu */}
       <div className="relative flex flex-col justify-center items-center">
         {/* Conteneur pour les boutons verts et rouges */}
@@ -162,12 +163,14 @@ function GameSimon() {
 
         {/* Bouton de jeu */}
         <button
-          className="absolute bg-neutral-900 text-white text-xl sm:text-2xl font-bold rounded-full w-[150px] sm:w-[175px] h-[150px] sm:h-[175px] duration-200 hover:scale-105"
+          className="absolute bg-neutral-900 text-white text-xl sm:text-2xl font-bold rounded-full w-[150px] sm:w-[175px] h-[150px] sm:h-[175px] duration-200 hover:scale-105 playBtn"
           onClick={handleNextLevel}
         >
           {sequence.length === 0 ? "Play" : sequence.length}
         </button>
+        
       </div>
+
     </div>
   );
 }
