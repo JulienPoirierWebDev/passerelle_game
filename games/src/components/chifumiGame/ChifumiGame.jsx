@@ -1,11 +1,13 @@
 import ChoiceButton from '../choiceButton/ChoiceButton';
+import ScoresBoard from '../scoresBoard/ScoresBoard';
 import { useSelector, useDispatch } from 'react-redux'
-import {setPlayerChoice, setComputerChoice, setResult } from '../../features/chifumi/chifumiGameSlice';
+import {setPlayerChoice, setComputerChoice, setResult, setResetGame, setUpdatedScores } from '../../features/chifumi/chifumiGameSlice';
 
 const ChifumiGame = () => {
   const playerChoice = useSelector((state) => state.chifumiGame.playerChoice);
   const computerChoice = useSelector((state) => state.chifumiGame.computerChoice);
   const result = useSelector((state) => state.chifumiGame.result);
+  const scores = useSelector((state) => state.chifumiGame.scores);
   const dispatch = useDispatch();
   const choices = ['pierre', 'feuille', 'ciseaux'];
 
@@ -26,13 +28,19 @@ const ChifumiGame = () => {
       (choice === 'feuille' && computerChoice === 'pierre') ||
       (choice === 'ciseaux' && computerChoice === 'feuille')
     ){
-        dispatch(setResult('Tu gagnes!'))
+        dispatch(setResult('Tu gagnes!'));
+        dispatch(setUpdatedScores('player'));
 
     } else {
         dispatch(setResult('l\'ordi gagne!'));
-
+        dispatch(setUpdatedScores('computer'));
     }
   };
+
+  const handleReset = () => {
+    dispatch(setResetGame());
+  };
+
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -54,6 +62,17 @@ const ChifumiGame = () => {
         <p>Le choix ordinateur: {computerChoice}</p>
         <p>Résultat: {result}</p>
       </div>
+      <ScoresBoard scores={scores} />
+          {/* <button className="border-2 border-blue-500 font-bold rounded p4" type="button" onClick={handleReset}>
+              Reset Game
+          </button> */}
+        <ChoiceButton
+        bgColor="bg-gray-200"
+        onClick={handleReset}
+        customStyle="border-2 border-blue-500 font-bold rounded p-4"
+      >
+        Reset Game
+      </ChoiceButton>
     </div>
   );
 };
