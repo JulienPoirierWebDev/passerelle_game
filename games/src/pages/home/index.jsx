@@ -1,9 +1,9 @@
-import GameLinkCard from "../../components/gameLinkCard";
+import GameCardsContainer from "../../components/gameCardsContainer";
 
 const HomePage = () => {
   return (
     <div className="m-16 mt-20 ">
-      <GameLinkCard />
+      <GameCardsContainer />
     </div>
   );
 };
