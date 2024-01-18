@@ -1,14 +1,23 @@
-import ChoiceButton from '../choiceButton/ChoiceButton';
-import { useSelector, useDispatch } from 'react-redux'
-import {setPlayerChoice, setComputerChoice, setResult } from '../../features/chifumi/chifumiGameSlice';
-
+import ChoiceButton from "../choiceButton/ChoiceButton";
+import ScoresBoard from "../scoresBoard/ScoresBoard";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setPlayerChoice,
+  setComputerChoice,
+  setResult,
+  setResetGame,
+  setUpdatedScores,
+} from "../../features/chifumi/chifumiGameSlice";
 
 const ChifumiGame = () => {
   const playerChoice = useSelector((state) => state.chifumiGame.playerChoice);
-  const computerChoice = useSelector((state) => state.chifumiGame.computerChoice);
+  const computerChoice = useSelector(
+    (state) => state.chifumiGame.computerChoice
+  );
   const result = useSelector((state) => state.chifumiGame.result);
+  const scores = useSelector((state) => state.chifumiGame.scores);
   const dispatch = useDispatch();
-  const choices = ['pierre', 'feuille', 'ciseaux'];
+  const choices = ["pierre", "feuille", "ciseaux"];
 
   const getRandomChoice = () => {
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -23,16 +32,20 @@ const ChifumiGame = () => {
     if (choice === computerChoice) {
       dispatch(setResult("Egalité!"));
     } else if (
-      (choice === 'pierre' && computerChoice === 'ciseaux') ||
-      (choice === 'feuille' && computerChoice === 'pierre') ||
-      (choice === 'ciseaux' && computerChoice === 'feuille')
-    ){
-        dispatch(setResult('Tu gagnes!'))
-
+      (choice === "pierre" && computerChoice === "ciseaux") ||
+      (choice === "feuille" && computerChoice === "pierre") ||
+      (choice === "ciseaux" && computerChoice === "feuille")
+    ) {
+      dispatch(setResult("Tu gagnes!"));
+      dispatch(setUpdatedScores("player"));
     } else {
-        dispatch(setResult('l\'ordi gagne!'));
-
+      dispatch(setResult("l'ordi gagne!"));
+      dispatch(setUpdatedScores("computer"));
     }
+  };
+
+  const handleReset = () => {
+    dispatch(setResetGame());
   };
 
   return (
@@ -48,13 +61,20 @@ const ChifumiGame = () => {
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Choose Your Weapon</h2>
         <div className="flex justify-center space-x-4">
-        {choices.map((choice) => (
-          <ChoiceButton key={choice} choice={choice} onClick={handlePlayerChoice} />
-        ))}
+          {choices.map((choice) => (
+            <ChoiceButton
+              key={choice}
+              choice={choice}
+              onClick={handlePlayerChoice}
+            />
+          ))}
         </div>
       </div>
+      <ScoresBoard scores={scores} />
+      <ChoiceButton bgColor="bg-gray-200" onClick={handleReset}>
+        Reset Game
+      </ChoiceButton>
     </div>
   );
-
-}
+};
 export default ChifumiGame;
