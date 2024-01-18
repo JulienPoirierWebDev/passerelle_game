@@ -17,7 +17,7 @@ const ChifumiGame = () => {
   const handlePlayerChoice = (choice) => {
     const computerChoice = getRandomChoice();
     dispatch(setPlayerChoice(choice));
-    dispatch(setComputerChoice(choice));
+    dispatch(setComputerChoice(computerChoice));
 
     if (choice === computerChoice) {
       dispatch(setResult("Egalité!"));
