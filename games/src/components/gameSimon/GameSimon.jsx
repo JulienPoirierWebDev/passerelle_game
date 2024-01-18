@@ -1,11 +1,24 @@
 import { useState, useEffect, useRef } from "react";
 import GameBtn from "../gameBtn/GameBtn";
+import useSound from "use-sound";
+import red from '../../../public/sound/red_simon.mp3'
+import blue from '../../../public/sound/blue_simon.mp3'
+import green from '../../../public/sound/green_simon.mp3'
+import yellow from '../../../public/sound/yellow_simon.mp3'
 
 // Définition des couleurs disponibles pour le jeu
 const colors = ["green", "red", "yellow", "blue"];
 
+
+
+
 // Définition du composant principal du jeu Simon
 function GameSimon() {
+   // Définition des différents sons associés aux couleurs
+   const [redplay] = useSound(red);
+   const [blueplay] = useSound(blue);
+   const [greenplay] = useSound(green);
+   const [yellowplay] = useSound(yellow);
   // États du jeu
   const [sequence, setSequence] = useState([]); // Séquence de couleurs à mémoriser
   const [playing, setPlaying] = useState(false); // Indique si le joueur peut jouer
@@ -42,9 +55,28 @@ function GameSimon() {
 
   // Gestionnaire de clic sur les boutons de couleur
   const handleColorClick = (e) => {
+ 
+
+    
     if (playing) {
       e.target.classList.add("opacity-50"); // Ajoute une classe pour indiquer le clic
-        console.log(e.target.getAttribute("color"));
+      //Sound effect quand on clique
+          switch (e.target.dataset.color) {
+            case "yellow":
+              yellowplay()
+              break;
+            case "red":
+              redplay()
+              break;
+            case "blue":
+              blueplay()
+              break;
+            case "green":
+              greenplay()
+            break;
+            default:
+              break;
+          }
       setTimeout(() => {
         e.target.classList.remove("opacity-50"); // Retire la classe après un court délai
 
@@ -77,23 +109,34 @@ function GameSimon() {
 
   // Effet de côté pour afficher la séquence
   useEffect(() => {
+    
     if (sequence.length > 0) {
       const showSequence = (idx = 0) => {
         let ref = null;
 
         // Associe la référence au bouton de couleur approprié dans la séquence
-        if (sequence[idx] === "green") ref = greenRef;
+        if (sequence[idx] === "green") {
+          ref = greenRef;
+          greenplay();
+        }
         if (sequence[idx] === "red")  {
           ref = redRef;
           console.log('ref'+redRef);
+          redplay();
         }
-        if (sequence[idx] === "yellow") ref = yellowRef;
-        if (sequence[idx] === "blue") ref = blueRef;
+        if (sequence[idx] === "yellow") {
+          ref = yellowRef;
+          yellowplay();
+        }
+        if (sequence[idx] === "blue") {
+          ref = blueRef;
+          blueplay();
+        }
 
         // Met en surbrillance le bouton
         setTimeout(() => {
           ref.current.classList.add("brightness-[2.5]");
-
+          
           // Retire la surbrillance après un court délai
           setTimeout(() => {
             ref.current.classList.remove("brightness-[2.5]");
