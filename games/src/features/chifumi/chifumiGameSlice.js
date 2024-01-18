@@ -27,6 +27,6 @@ export const chifumiGameSlice = createSlice({
     },
 })
 
-export const { setPlayerChoice, setComputerChoice, setResult } = chifumiGameSlice.actions;
+export const { setPlayerChoice, setComputerChoice, setResult, reset } = chifumiGameSlice.actions;
 
 export default chifumiGameSlice.reducer;

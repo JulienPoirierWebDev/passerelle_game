@@ -1,6 +1,6 @@
 import ChoiceButton from '../choiceButton/ChoiceButton';
 import { useSelector, useDispatch } from 'react-redux'
-import {setPlayerChoice, setComputerChoice, setResult } from '../../features/chifumi/chifumiGameSlice';
+import {setPlayerChoice, setComputerChoice, setResult, reset } from '../../features/chifumi/chifumiGameSlice';
 
 const ChifumiGame = () => {
   const playerChoice = useSelector((state) => state.chifumiGame.playerChoice);

@@ -1,31 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    sequence: [],
-    playing: false,
-    playingIdx: 0,
+  score: 0,
+  sequence: [], // J'ajoute l'état de la séquence ici s'il a du sens pour l'état global
+  // Autres états globaux si nécessaire
 };
 
 export const gameSimonSlice = createSlice({
-    name: "gameSimon",
-    initialState,
-    reducers: {
-        setSequence: (state, action) => {
-            state.sequence = action.payload;
-        },
-        setPlaying: (state, action) => {
-            state.playing = action.payload;
-        },
-        setPlayingIdx: (state, action) => {
-            state.playingIdx = action.payload;
-        },
-        reset: (state) => {
-            state.sequence = [];
-            state.playing = false;
-            state.playingIdx = 0;
-        }
+  name: 'gameSimon',
+  initialState,
+  reducers: {
+    // Action pour mettre à jour le score
+    setScore: (state, action) => {
+      state.score = action.payload;
     },
-})
+    // Action pour réinitialiser le score
+    resetScore: (state) => {
+      state.score = 0;
+    },
+    reset : (state) => {
+      state.score = 0;
+      state.sequence = [];
+    }
+    // Autres reducers pour gérer la séquence ou autres états si nécessaire
+  },
+});
 
-export const { setSequence, setPlaying, setPlayingIdx , reset } = gameSimonSlice.actions;
+// Exporter les actions et le reducer
+export const { setScore, resetScore, reset } = gameSimonSlice.actions;
 export default gameSimonSlice.reducer;

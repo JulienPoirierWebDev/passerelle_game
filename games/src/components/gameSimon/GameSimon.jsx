@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setScore, resetScore, reset} from '../../features/gameSimon/gameSimonSlice';
 import GameBtn from "../gameBtn/GameBtn";
 import useSound from "use-sound";
 import red from '../../../public/sound/red_simon.mp3'
@@ -17,7 +19,10 @@ const colors = ["green", "red", "yellow", "blue"];
 // Définition du composant principal du jeu Simon
 function GameSimon() {
   const dispatch = useDispatch();
- 
+  const currentScore = useSelector((state) => state.gameSimon.score); 
+  const addSequenceAndSetScore = () => {
+    dispatch(setScore(sequence.length + 1));
+    addNewColor();
 
    // Définition des différents sons associés aux couleurs
    const [redplay] = useSound(red);
@@ -34,6 +39,7 @@ function GameSimon() {
   const redRef = useRef(null);
   const yellowRef = useRef(null);
   const blueRef = useRef(null);
+
 
 
   // Créez une fonction pour activer le mode plein écran :
@@ -62,8 +68,8 @@ function GameSimon() {
       document.msExitFullscreen();
     }
   }
-
-
+  // Fonction pour réinitialiser le jeu
+dispatch(reset);
   // Fonction pour ajouter une nouvelle couleur à la séquence
   const addNewColor = () => {
     const color = colors[Math.floor(Math.random() * 4)]; // Choix aléatoire d'une couleur
@@ -75,11 +81,14 @@ function GameSimon() {
   // Fonction pour passer au niveau suivant du jeu
   const handleNextLevel = () => {
     if (!playing) {
-      dispatch (setPlaying(true)); // Active le jeu
+      setPlaying(true);
+      addSequenceAndSetScore(); // Active le jeu
       addNewColor(); // Ajoute une nouvelle couleur à la séquence
       enterFullScreen(); // Active le mode plein écran
+      dispatch(setScore(sequence.length)); 
     }
   };
+  
 
   // Gestionnaire de clic sur les boutons de couleur
   const handleColorClick = (e) => {
@@ -127,7 +136,7 @@ function GameSimon() {
           }
         } else {
           // Réinitialise le jeu en cas de clic incorrect
-          dispatch(reset()); // resetgame
+          dispatch(reset());
            alert("You Lost!");
            
            
@@ -249,7 +258,9 @@ function GameSimon() {
 
     </div>
   );
+   
 }
 
-// Exporte le composant
+
+
 export default GameSimon;
