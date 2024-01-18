@@ -1,4 +1,4 @@
-function ChoiceButton({children, bgColor, onClick, customStyle, customStyle2}) {
+function ChoiceButton({children, bgColor, onClick}) {
   return (
     <button className={`${bgColor} text-white  font-bold py-2 px-4 rounded`} type="button" onClick={onClick}>{children}</button>
   )
