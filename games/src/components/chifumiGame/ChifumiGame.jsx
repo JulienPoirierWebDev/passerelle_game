@@ -55,5 +55,6 @@ const ChifumiGame = () => {
       </div>
     </div>
   );
+
 }
 export default ChifumiGame;
