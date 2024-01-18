@@ -115,23 +115,27 @@ function GameSimon() {
         let ref = null;
 
         // Associe la référence au bouton de couleur approprié dans la séquence
-        if (sequence[idx] === "green") {
-          ref = greenRef;
-          greenplay();
+        switch (sequence[idx]) {
+          case "yellow":
+            ref = yellowRef;
+            yellowplay()
+            break;
+          case "red":
+            ref = redRef;
+            redplay();
+            break;
+          case "blue":
+            ref = blueRef;
+            blueplay();
+            break;
+          case "green":
+            ref = greenRef;
+            greenplay();
+            break;
+          default:
+            break;
         }
-        if (sequence[idx] === "red")  {
-          ref = redRef;
-          console.log('ref'+redRef);
-          redplay();
-        }
-        if (sequence[idx] === "yellow") {
-          ref = yellowRef;
-          yellowplay();
-        }
-        if (sequence[idx] === "blue") {
-          ref = blueRef;
-          blueplay();
-        }
+        
 
         // Met en surbrillance le bouton
         setTimeout(() => {
