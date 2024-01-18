@@ -35,21 +35,24 @@ const ChifumiGame = () => {
   };
 
   return (
-    <div>
-      <h1>Chifoumi Game</h1>
-      <div>
-        <p>Votre choix: {playerChoice}</p>
-        <p>Le choix de l'ordi: {computerChoice}</p>
-        <p>quel est le resultat: {result}</p>
-      </div>
-      <div>
-        <h2>Choose Your Weapon</h2>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-3xl font-bold mb-8">Chifoumi Game</h1>
+      <div className="flex space-x-4 mb-8">
         {choices.map((choice) => (
-        //   <button key={choice} onClick={() => handlePlayerChoice(choice)}>
-        //     {choice}
-        //   </button>
-          <ChoiceButton key={choice} bgColor="bg-blue-500" onClick={() => handlePlayerChoice(choice)}>{choice}</ChoiceButton>
+          <ChoiceButton
+            key={choice}
+            bgColor={`bg-${choice === 'pierre' ? 'red' : (choice === 'feuille' ? 'green' : 'blue')}-500`}
+            onClick={() => handlePlayerChoice(choice)}
+            customStyle="border-2 border-white rounded p-4"
+          >
+            {choice}
+          </ChoiceButton>
         ))}
+      </div>
+      <div className="text-center">
+        <p>Votre choix: {playerChoice}</p>
+        <p>Le choix ordinateur: {computerChoice}</p>
+        <p>Résultat: {result}</p>
       </div>
     </div>
   );
