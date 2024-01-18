@@ -63,9 +63,6 @@ const ChifumiGame = () => {
         <p>Résultat: {result}</p>
       </div>
       <ScoresBoard scores={scores} />
-          {/* <button className="border-2 border-blue-500 font-bold rounded p4" type="button" onClick={handleReset}>
-              Reset Game
-          </button> */}
         <ChoiceButton
         bgColor="bg-gray-200"
         onClick={handleReset}
