@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import './TicTacToe.css';
 
 // Import des images pour les icônes de X et O
-import circle_icon from '../../../public/assets/gif/giphyCircleLGBT.gif';
-import cross_icon from '../../../public/assets/gif/giphycrosslgbt.gif';
+import circle_icon from '../../../public/assets/gif/giphyNaruto.gif';
+import cross_icon from '../../../public/assets/gif/giphySasuke.gif';
 
 // Tableau pour stocker l'état du jeu
 let data = ["", "", "", "", "", "", "", "", ""];
