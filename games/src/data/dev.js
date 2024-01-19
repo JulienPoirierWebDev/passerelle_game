@@ -15,13 +15,13 @@ const devs = [
             "name": "Alex",
             "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
             "link": "https://github.com/alexfrai",
-            projects: ['GameSimon']
+            projects: ['GameSimon','GameTictactoe']
         },
         {
             "name": "Cisco",
-            "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
+            "img": "../../public/assets/gif/itachi-itachi-uchiha.gif",
             "link": "https://github.com/Cisco29",
-            projects: ['GameSimon']
+            projects: ['GameSimon','GameTictactoe']
         },
         {
             "name": "Anthony",
@@ -33,13 +33,13 @@ const devs = [
             "name": "Jason",
             "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
             "link": "https://github.com/MicroTarion",
-            projects: ['GameSimon']
+            projects: ['GameSimon','GameTictactoe']
         },
         {
             "name": "Erwan",
             "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
             "link": "https://github.com/Veleoran",
-            projects: ['GameSimon']
+            projects: ['GameSimon','GameTictactoe']
         },
         {
             "name": "Frederic",
@@ -51,7 +51,7 @@ const devs = [
             "name": "Chantal",
             "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
             "link": "https://github.com/Chant76",
-            projects: ['GameSimon']
+            projects: ['GameSimon','GameTictactoe']
         }
     ]
 

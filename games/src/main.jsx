@@ -9,6 +9,7 @@ import HomePage from "./pages/home/index.jsx";
 import ChifumiPage from "./pages/chifumi/index.jsx";
 import ProposPage from "./pages/apropos/ProposPage.jsx";
 import MemoryPage from "./pages/memory/index.jsx";
+import TicTacToe from "./components/TicTacToe/TicTacToe.jsx";
 import SimonPage from "./pages/simon/index.jsx";
 
 const router = createBrowserRouter([
@@ -18,8 +19,10 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/simon", element: <SimonPage /> },
       { path: "/chifumi", element: <ChifumiPage /> },
+      { path: "/tictactoe", element: <TicTacToe /> },
       { path: "/apropos", element: <ProposPage /> },
       { path: "/memory", element: <MemoryPage /> },
+
     ],
   },
 ]);

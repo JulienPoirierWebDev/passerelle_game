@@ -54,11 +54,21 @@ const GameCardsContainer = () => {
         "Pour commencer les joueurs comptent jusqu'à trois en mettant la main dans le dos. Une fois à trois les joueurs révèlent leur main (pierre, feuille ou ciseaux) en même temps. La plus forte des formes l'emporte et le joueur marque le point gagnant. Si les deux joueurs utilisent la même forme c'est un match nul.",
     },
     {
+
       path: "/memory",
       name: "Memory",
       img: "/assets/logo/memory.jpg",
       description:
-      "Le joueur retourne deux cartes. Si les images sont identiques, il gagne la paire constituée et rejoue. Si les images sont différentes, il les repose faces cachées là où elles étaient. La partie est terminée lorsque toutes les cartes ont été assemblées par paires."},
+      "Le joueur retourne deux cartes. Si les images sont identiques, il gagne la paire constituée et rejoue. Si les images sont différentes, il les repose faces cachées là où elles étaient. La partie est terminée lorsque toutes les cartes ont été assemblées par paires."
+    },
+    {
+      path: "/tictactoe",
+      name: "GameTictactoe",
+      img: "/assets/logo/tic-tac-toe.png",
+      description:
+      " Jeu de réflexion se pratiquant à deux joueurs, tour par tour, dont le but est de créer le premier un alignement (vertical, horizontale ou diagonal). Si personne n'y arrive après avoir rempli le board, c'est un match nul"
+    },
+
   ];
 
   return (

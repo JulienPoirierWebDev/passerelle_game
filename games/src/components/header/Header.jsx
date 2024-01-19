@@ -11,18 +11,20 @@ const Header = () => {
       name: "Simon",
     },
     {
+
       path: "/memory",
       name: "Memory",
     },
     {
-      path: "/morpion",
+      path: "/tictactoe",
       name: "Oxo",
     },
     {
       path: "/apropos",
       name: "A propos",
     }
-  ]
+  ];
+
   return (
    <>
    <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
@@ -41,5 +43,6 @@ const Header = () => {
    </>
   )
 }
+
 
 export default Header;

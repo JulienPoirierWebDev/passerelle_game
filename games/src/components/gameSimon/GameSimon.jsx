@@ -1,16 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import GameBtn from "../gameBtn/GameBtn";
 import useSound from "use-sound";
-import red from "../../../public/sound/red_simon.mp3";
-import blue from "../../../public/sound/blue_simon.mp3";
-import green from "../../../public/sound/green_simon.mp3";
-import yellow from "../../../public/sound/yellow_simon.mp3";
+import red from "/sound/red_simon.mp3";
+import blue from "/sound/blue_simon.mp3";
+import green from "/sound/green_simon.mp3";
+import yellow from "/sound/yellow_simon.mp3";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSequence,
   setPlaying,
   setPlayingIdx,
   reset,
+  setLoose,
 } from "../../features/gameSimon/gameSimonSlice";
 
 // Définition des couleurs disponibles pour le jeu
@@ -29,7 +30,8 @@ function GameSimon() {
   const sequence = useSelector((state) => state.gameSimon.sequence); // Séquence de couleurs à mémoriser
   const playing = useSelector((state) => state.gameSimon.playing); // Indique si le joueur peut jouer
   const playingIdx = useSelector((state) => state.gameSimon.playingIdx); // Index de la couleur en cours dans la séquence
-  const [isFullScreen, setIsFullScreen] = useState(false); // Indique si le jeu est en plein écran
+  const loose = useSelector((state) => state.gameSimon.loose);
+
   // Références aux boutons de couleurs
   const greenRef = useRef(null);
   const redRef = useRef(null);
@@ -48,20 +50,9 @@ function GameSimon() {
       } else if (gameContainer.msRequestFullscreen) {
         gameContainer.msRequestFullscreen();
       }
+    }
+  };
 
-      setIsFullScreen(true);
-    }
-  };
-  // permet de quitter le mode plein écran
-  const exitFullScreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  };
 
   // Fonction pour ajouter une nouvelle couleur à la séquence
   const addNewColor = () => {
@@ -71,7 +62,7 @@ function GameSimon() {
   };
 
   // Fonction pour passer au niveau suivant du jeu
-  const handleNextLevel = () => {
+  const startGame = () => {
     if (!playing) {
       dispatch(setPlaying(true)); // Active le jeu
       addNewColor(); // Ajoute une nouvelle couleur à la séquence
@@ -104,8 +95,7 @@ function GameSimon() {
         e.target.classList.remove("opacity-50"); // Retire la classe après un court délai
 
         const clickColor = e.target.dataset.color;
-        console.log(e.target);
-
+        
         // Vérifie si la couleur cliquée est correcte dans la séquence
         if (sequence[playingIdx] === clickColor) {
           // Vérifie si c'est la dernière couleur de la séquence
@@ -120,9 +110,10 @@ function GameSimon() {
             dispatch(setPlayingIdx(playingIdx + 1));
           }
         } else {
-          // Réinitialise le jeu en cas de clic incorrect
-          dispatch(reset()); // resetgame
-          alert("You Lost!");
+          // Indique que le joueur a perdu
+          dispatch(setLoose(true));
+          dispatch(setPlaying(false));
+
         }
       }, 250);
     }
@@ -179,7 +170,9 @@ function GameSimon() {
     // Conteneur principal
     <div
       id="game-container"
-      className="flex justify-center items-center w-screen h-full min-[320px]:text-center "
+      className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
+    min-[320px]:text-center "
+
     >
       {/* Conteneur du jeu */}
       <div className="relative flex flex-col justify-center items-center">
@@ -230,12 +223,29 @@ function GameSimon() {
         </div>
 
         {/* Bouton de jeu */}
-        <button
-          className="absolute bg-neutral-900 text-white text-xl sm:text-2xl font-bold rounded-full w-[150px] sm:w-[175px] h-[150px] sm:h-[175px] duration-200 hover:scale-105 playBtn"
-          onClick={handleNextLevel}
-        >
-          {sequence.length === 0 ? "Play" : sequence.length}
-        </button>
+
+        {!loose ? (
+          <button
+            className="absolute bg-neutral-900 text-white text-xl sm:text-2xl font-bold rounded-full w-[150px] sm:w-[175px] h-[150px] sm:h-[175px] duration-200 hover:scale-105 playBtn"
+            onClick={startGame}
+          >
+            {sequence.length === 0 ? "Play" : sequence.length}
+          </button>
+        ) : null}
+        {loose ? (
+          <div
+            className="absolute"
+            onClick={() => {
+              dispatch(reset());
+              console.log("reset");
+            }}
+          >
+            <button className="bg-neutral-900 text-white text-xl sm:text-2xl font-bold rounded-full w-[150px] sm:w-[175px] h-[150px] sm:h-[175px] duration-200 hover:scale-105 playBtn">
+              <span className=" inline-block">Game Over</span>
+              <span className="inline-block">Score : {sequence.length}</span>
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
