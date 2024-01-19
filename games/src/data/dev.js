@@ -19,7 +19,7 @@ const devs = [
         },
         {
             "name": "Cisco",
-            "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
+            "img": "../../public/assets/gif/itachi-itachi-uchiha.gif",
             "link": "https://github.com/Cisco29",
             projects: ['GameSimon']
         },
