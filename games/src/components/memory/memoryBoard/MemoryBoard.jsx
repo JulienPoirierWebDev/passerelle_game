@@ -9,100 +9,134 @@ function MemoryBoard() {
             id: 1,
             name: 'banane',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/banane.jpg'
         },
         {
             id: 2,
             name: 'banane',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/banane.jpg'
         },
         {
             id: 3,
             name: 'fraise',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/fraise.png'
         },
         {
             id: 4,
             name: 'fraise',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/fraise.png'
         },
         {
             id: 5,
             name: 'kiwi',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/kiwi.jpg'
         },
         {
             id: 6,
             name: 'kiwi',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/kiwi.jpg'
         },
         {
             id: 7,
             name: 'pomme',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/pomme.png'
         },
         {
             id: 8,
             name: 'pomme',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/pomme.png'
         },
         {
             id: 9,
             name: 'poire',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/poire.jpg'
         },
         {
             id: 10,
             name: 'poire',
             flip: false,
-            find: false
+            find: false,
+            img: './assets/img/poire.jpg'
         },
     ]
     const [shuffledCards, setShuffledCards] = useState(cards.sort(() => Math.random() - 0.5));
     const [score, setScore] = useState(cards.length/2);
-    let choices = [];
+    const [choices, setChoices] = useState([]);
+    const [playable, setPlayable] = useState(true);
+
+    function reset() {
+        setShuffledCards(shuffledCards.sort(() => Math.random() - 0.5));
+        setScore(cards.length/2);
+        setChoices([]);
+        setPlayable(true);
+    }
 
     function handleClick(card) {
-        if(card.flip === true) {
+        if(card.flip === true || playable === false) {
             return;
         }
-        choices.push(card);
         card.flip = true;
+        let localChoices = [...choices, card];
+        let localScore = score;
+        setChoices(localChoices);
         console.log(shuffledCards);
-
-        setTimeout(() => {
-            if (choices.length === 2) {
-                if (choices[0].name === choices[1].name) {
-                    choices.map((element) => {
+        localChoices.map((element) => {
+            const newTable = [...shuffledCards];
+            newTable[shuffledCards.indexOf(element)].flip = true;
+            setShuffledCards(() => newTable);
+        })
+        
+            if (localChoices.length === 2) {
+                setPlayable(false);
+                setTimeout(() => {
+                if (localChoices[0].name === localChoices[1].name) {
+                    localChoices.map((element) => {
                         const newTable = [...shuffledCards];
                         newTable[shuffledCards.indexOf(element)].find = true;
                         setShuffledCards(newTable);
                     })
-                    choices = [];
+                    setChoices([]);
+                    localChoices = [];
                     console.log(shuffledCards);
+                    if(shuffledCards.every(element => element.find === true)) {
+                        alert('Victoire !!');
+                    }
                 } else {
-                    choices.map((element) => {
+                    localChoices.map((element) => {
+                        console.log('here');
                         const newTable = [...shuffledCards];
                         newTable[shuffledCards.indexOf(element)].flip = false;
                         setShuffledCards(newTable);
                     })
-                    choices = [];
-                    setScore(score - 1);
-                    if (score === 1) {
+                    setChoices([]);
+                    localChoices = [];
+                    setScore(localScore - 1);
+                    if (localScore === 1) {
                         alert('Game Over');
                     }
                     console.log(shuffledCards);
                 }
+                setPlayable(true);
+            }, 1500)
             }
-        }, 3000)       
+              
     }
     return (
         <>
@@ -116,13 +150,11 @@ function MemoryBoard() {
                     return (
                         <>
                         <ReactCardFlip isFlipped={card.flip} flipDirection="vertical">
-                            <div className="mx-2 my-2">
+                            <div className="mx-2 my-2 h-72">
                                 <img className={style} onClick={() => handleClick(card)} key={card.id} src="./assets/img/card-flip.png" alt="" />
-                                <p className="text-center">{card.name}</p>
                             </div>
-                            <div className="mx-2 my-2">
-                                <img className={style} key={card.id} src="./assets/img/poire.jpg" alt="" />
-                                <p className="text-center">{card.name}</p>
+                            <div className="mx-2 my-2 h-72">
+                                <img className={style} key={card.id} src={card.img} alt="fruits" />
                             </div>
                         </ReactCardFlip>
                         </>
@@ -131,6 +163,8 @@ function MemoryBoard() {
             }
 
             </div>
+
+            <button onClick={reset}>Rejouer</button>
         </>
     )
 }
