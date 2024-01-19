@@ -1,19 +1,29 @@
+
+
 import React, { useRef, useState } from 'react';
 import './TicTacToe.css';
+import { setCount, setLock, reset } from '../../features/tictactoe/tictactoeSlice';
 
 // Import des images pour les icônes de X et O
 import circle_icon from '../../../public/assets/gif/giphyNaruto.gif';
 import cross_icon from '../../../public/assets/gif/giphySasuke.gif';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Tableau pour stocker l'état du jeu
-let data = ["", "", "", "", "", "", "", "", ""];
+// let data = ["", "", "", "", "", "", "", "", ""];
+
+
 
 // Composant principal du jeu Tic Tac Toe
 export const Tictactoe = () => {
-    // State pour suivre le nombre de coups joués et le verrouillage du jeu
-    let [count, setCount] = useState(0);
-    let [lock, setLock] = useState(false);
 
+    const dispatch = useDispatch();
+    // State pour suivre le nombre de coups joués et le verrouillage du jeu
+    // let [count, setCount] = useState(0);
+    // let [lock, setLock] = useState(false);
+    const count = useSelector((state) => state.tictactoe.count); 
+    const lock = useSelector((state) => state.tictactoe.lock); 
+    const data = useSelector((state) => state.tictactoe.data);
     // Référence pour accéder au titre dynamique du jeu
     let titleRef = useRef(null);
 
@@ -31,11 +41,11 @@ export const Tictactoe = () => {
         if (count % 2 === 0) {
             e.target.innerHTML = `<img src=${cross_icon} alt="cross" />`;
             data[num] = "x";
-            setCount(++count);
+            dispatch(setCount(count+1));
         } else {
             e.target.innerHTML = `<img src=${circle_icon}>`;
             data[num] = "o";
-            setCount(++count);
+            dispatch(setCount(count+1));
         }
 
         // Vérifier s'il y a un gagnant après chaque coup
@@ -63,9 +73,7 @@ export const Tictactoe = () => {
             won(data[8]);
         } else if (data[0] === data[4] && data[4] === data[8] && data[8] !== "") {
             won(data[8]);
-        } else if (data[0] === data[1] && data[1] === data[2] && data[2] !== "") {
-            won(data[2]);
-        } else if (data[2] === data[4] && data[4] === data[6] && data[6] !== "") {
+        }  else if (data[2] === data[4] && data[4] === data[6] && data[6] !== "") {
             won(data[6]);
         }
     };
@@ -73,7 +81,7 @@ export const Tictactoe = () => {
     // Fonction pour gérer la victoire
     const won = (winner) => {
         // Verrouiller le jeu
-        setLock(true);
+        dispatch(setLock(true));
 
         // Mettre à jour le titre avec le message de victoire et l'icône correspondante
         if (winner === "x") {
@@ -89,7 +97,7 @@ export const Tictactoe = () => {
         data = ["", "", "", "", "", "", "", "", ""];
 
         // Déverrouiller le jeu
-        setLock(false);
+        dispatch(setLock(false));
 
         // Réinitialiser le titre
         titleRef.current.innerHTML = "Tic Tac Toe Game In <span>React</span>";
