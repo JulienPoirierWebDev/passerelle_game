@@ -53,7 +53,6 @@ function GameSimon() {
     }
   };
 
-
   // Fonction pour ajouter une nouvelle couleur à la séquence
   const addNewColor = () => {
     const color = colors[Math.floor(Math.random() * 4)]; // Choix aléatoire d'une couleur
@@ -95,7 +94,7 @@ function GameSimon() {
         e.target.classList.remove("opacity-50"); // Retire la classe après un court délai
 
         const clickColor = e.target.dataset.color;
-        
+
         // Vérifie si la couleur cliquée est correcte dans la séquence
         if (sequence[playingIdx] === clickColor) {
           // Vérifie si c'est la dernière couleur de la séquence
@@ -113,7 +112,6 @@ function GameSimon() {
           // Indique que le joueur a perdu
           dispatch(setLoose(true));
           dispatch(setPlaying(false));
-
         }
       }, 250);
     }
@@ -169,10 +167,10 @@ function GameSimon() {
   return (
     // Conteneur principal
     <div
+      data-testId="game-container"
       id="game-container"
       className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
     min-[320px]:text-center "
-
     >
       {/* Conteneur du jeu */}
       <div className="relative flex flex-col justify-center items-center">
