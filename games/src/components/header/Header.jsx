@@ -11,6 +11,14 @@ const Header = () => {
       name: "Simon",
     },
     {
+      path: "/memory",
+      name: "Memory",
+    },
+    {
+      path: "/morpion",
+      name: "Oxo",
+    },
+    {
       path: "/apropos",
       name: "A propos",
     }
@@ -18,7 +26,7 @@ const Header = () => {
   return (
    <>
    <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-    <div className="w-60">
+    <div className="w-96">
         <Link className="inline-block" to="/"><img src='./assets/logo/logo.png' alt="logo" className="h-12" /></Link>
     </div>
     <h1 className="text-3xl font-bold w-7/12 text-center">Passerelle Games</h1>

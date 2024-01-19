@@ -8,7 +8,7 @@ import Layout from "./layout/Layout.jsx";
 import HomePage from "./pages/home/index.jsx";
 import ChifumiPage from "./pages/chifumi/index.jsx";
 import ProposPage from "./pages/apropos/ProposPage.jsx";
-import MemoryBoard from "./components/memory/memoryBoard/MemoryBoard.jsx";
+import MemoryPage from "./pages/memory/index.jsx";
 import SimonPage from "./pages/simon/index.jsx";
 
 const router = createBrowserRouter([
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/simon", element: <SimonPage /> },
       { path: "/chifumi", element: <ChifumiPage /> },
       { path: "/apropos", element: <ProposPage /> },
-      { path: "/memory", element: <MemoryBoard /> },
+      { path: "/memory", element: <MemoryPage /> },
     ],
   },
 ]);

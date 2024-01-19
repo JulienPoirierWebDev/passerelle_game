@@ -176,7 +176,7 @@ function MemoryBoard() {
             </div>
             
             <div className="flex justify-center">
-                <button className="inline-block px-8 py-4 text-lg text-[#e7cb5c] font-bold bg-[#7590bf] rounded hover:text-[#46d9fe] border-4 border-[#e7cb5c]" onClick={reset}>Rejouer</button>
+                <button className="inline-block px-8 py-4 mt-8 text-lg text-[#e7cb5c] font-bold bg-[#7590bf] rounded hover:text-[#46d9fe] border-4 border-[#e7cb5c]" onClick={reset}>Rejouer</button>
             </div>
         </>
     )
