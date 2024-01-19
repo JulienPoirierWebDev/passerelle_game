@@ -1,4 +1,3 @@
-import React from "react";
 import GameSimon from "../../components/gameSimon/GameSimon";
 
 function SimonPage() {
