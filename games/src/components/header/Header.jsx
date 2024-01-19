@@ -11,12 +11,12 @@ const Header = () => {
       name: "Simon",
     },
     {
-      path: "/apropos",
-      name: "A propos",
-    }, // Ajout de la virgule ici
-    {
       path: "/tictactoe",
       name: "TicTacToe",
+    },
+    {
+      path: "/apropos",
+      name: "A propos",
     }
   ];
 

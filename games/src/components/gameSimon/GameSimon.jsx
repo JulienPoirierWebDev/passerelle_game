@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import GameBtn from "../gameBtn/GameBtn";
 import useSound from "use-sound";
-import red from "../../../public/sound/red_simon.mp3";
-import blue from "../../../public/sound/blue_simon.mp3";
-import green from "../../../public/sound/green_simon.mp3";
-import yellow from "../../../public/sound/yellow_simon.mp3";
+import red from "/sound/red_simon.mp3";
+import blue from "/sound/blue_simon.mp3";
+import green from "/sound/green_simon.mp3";
+import yellow from "/sound/yellow_simon.mp3";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSequence,
