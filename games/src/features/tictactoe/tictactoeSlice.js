@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    count: 0,
+    count: 0, 
+    isClickable: true,
     lock: false,
     data: ["", "", "", "", "", "", "", "", ""],
     
@@ -23,6 +24,7 @@ export const gameTictactoeSlice = createSlice({
             state.count = 0;
             state.lock = false;
             state.data = ["", "", "", "", "", "", "", "", ""];
+            state.isClickable = true;
             
         },
 
@@ -34,10 +36,15 @@ export const gameTictactoeSlice = createSlice({
             //state.count += 1;
         },
 
+        setIsClickable: (state, action) => {
+            state.isClickable = action.payload;
+
+        }
+
             
         
     },
 })
 
-export const { setCount, setLock, reset, setDataCell } = gameTictactoeSlice.actions;
+export const { setCount, setLock, reset, setDataCell, setIsClickable } = gameTictactoeSlice.actions;
 export default gameTictactoeSlice.reducer;
