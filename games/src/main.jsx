@@ -6,18 +6,18 @@ import { store } from "./store/store.js";
 import { Provider } from "react-redux";
 import Layout from "./layout/Layout.jsx";
 import HomePage from "./pages/home/index.jsx";
-import GameSimon from "./components/gameSimon/GameSimon.jsx";
-import ChifumiGame from "./pages/chifumi/index.jsx";
+import ChifumiPage from "./pages/chifumi/index.jsx";
 import ProposPage from "./pages/apropos/ProposPage.jsx";
 import TicTacToe from "./components/TicTacToe/TicTacToe.jsx";
+import SimonPage from "./pages/simon/index.jsx";
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/simon", element: <GameSimon /> },
-      { path: "/chifumi", element: <ChifumiGame /> },
+      { path: "/simon", element: <SimonPage /> },
+      { path: "/chifumi", element: <ChifumiPage /> },
       { path: "/apropos", element: <ProposPage /> },
       { path: "/tictactoe", element: <TicTacToe /> },
     ],

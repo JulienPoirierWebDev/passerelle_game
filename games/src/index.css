@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
-  }
+  margin: 0;
+  padding: 0;
+}
 
-  @media screen and (min-width: 375px)  {
+/* @media screen and (min-width: 375px)  {
   
      .simonBtn {
       height: 140px;
@@ -17,4 +17,4 @@
        width: 100px;
        height: 100px;
      }
-  }
+  } */
