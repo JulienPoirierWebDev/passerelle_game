@@ -77,9 +77,9 @@ export const Tictactoe = () => {
 
         // Mettre à jour le titre avec le message de victoire et l'icône correspondante
         if (winner === "x") {
-            titleRef.current.innerHTML = `Congratulations: <img src=${cross_icon}> you win`;
+            titleRef.current.innerHTML = `Congratulations: <img src=${cross_icon}> Sasuke win`;
         } else {
-            titleRef.current.innerHTML = `Congratulations: <img src=${circle_icon}> you win`;
+            titleRef.current.innerHTML = `Congratulations: <img src=${circle_icon}> Naruto win`;
         }
     };
 
