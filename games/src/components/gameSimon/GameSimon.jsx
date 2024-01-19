@@ -167,7 +167,7 @@ function GameSimon() {
   return (
     // Conteneur principal
     <div
-      data-testId="game-container"
+      data-testid="game-container"
       id="game-container"
       className="flex justify-center items-center bg-neutral-800 text-white w-screen h-screen 
     min-[320px]:text-center "
@@ -178,22 +178,24 @@ function GameSimon() {
         <div>
           {/* Bouton vert */}
           <GameBtn
+            testid="greenButton"
             id="greenBtn"
             color="green"
             border="rounded-tl-full"
             bg="bg-green-500"
             onClick={handleColorClick}
-            ref={greenRef}
+            myRef={greenRef}
           />
 
           {/* Bouton rouge */}
           <GameBtn
+            testid="redButton"
             id="redBtn"
             color="red"
             border="rounded-tr-full"
             bg="bg-red-500"
             onClick={handleColorClick}
-            ref={redRef}
+            myRef={redRef}
           />
         </div>
 
@@ -201,22 +203,24 @@ function GameSimon() {
         <div>
           {/* Bouton jaune */}
           <GameBtn
+            testid="yellowButton"
             id="yellowBtn"
             color="yellow"
             border="rounded-bl-full"
             bg="bg-yellow-400"
             onClick={handleColorClick}
-            ref={yellowRef}
+            myRef={yellowRef}
           />
 
           {/* Bouton bleu */}
           <GameBtn
+            testid="blueButton"
             id="blueBtn"
             color="blue"
             border="rounded-br-full"
             bg="bg-blue-500"
             onClick={handleColorClick}
-            ref={blueRef}
+            myRef={blueRef}
           />
         </div>
 
@@ -224,6 +228,7 @@ function GameSimon() {
 
         {!loose ? (
           <button
+            data-testid="playButton"
             className="absolute bg-neutral-900 text-white text-xl sm:text-2xl font-bold rounded-full w-[150px] sm:w-[175px] h-[150px] sm:h-[175px] duration-200 hover:scale-105 playBtn"
             onClick={startGame}
           >
