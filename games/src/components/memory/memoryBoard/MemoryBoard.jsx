@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactCardFlip from 'react-card-flip';
 
 
 function MemoryBoard() {
@@ -66,8 +67,9 @@ function MemoryBoard() {
         },
     ]
     const [shuffledCards, setShuffledCards] = useState(cards.sort(() => Math.random() - 0.5));
+    const [score, setScore] = useState(cards.length/2);
+    const [isFliped, setIsFliped] = useState(false);
     let choices = [];
-    let score = cards.length;
 
     function handleClick(card) {
         if(card.flip === true) {
@@ -75,6 +77,7 @@ function MemoryBoard() {
         }
         choices.push(card);
         card.flip = true;
+        setIsFliped(true);
 
         if (choices.length === 2) {
             if (choices[0].name === choices[1].name) {
@@ -92,19 +95,36 @@ function MemoryBoard() {
                     setShuffledCards(newTable);
                 })
                 choices = [];
-                score--;
-                console.log(score);
+                setScore(score - 1);
+                if (score === 1) {
+                    alert('Game Over');
+                }
                 console.log(shuffledCards);
             }
         }
     }
     return (
         <>
-            <div>{
+            <div>
+                <p className="text-center">Vie restantes : {score}</p>
+            </div>
+
+            <div className="grid grid-cols-5 mx-auto">{
                 shuffledCards.map((card) => {
                     const style = card.flip ? 'cursor-not-allowed' : 'cursor-pointer';
                     return (
-                        <p className={style} onClick={() => handleClick(card)} key={card.id}>{card.name}</p>
+                        <>
+                        <ReactCardFlip isFlipped={isFliped} flipDirection="vertical">
+                            <div className="mx-2 my-2">
+                                <img className={style} onClick={() => handleClick(card)} key={card.id} src="./assets/img/card-flip.png" alt="" />
+                                <p className="text-center">{card.name}</p>
+                            </div>
+                            <div className="mx-2 my-2">
+                                <img className={style} onClick={() => handleClick(card)} key={card.id} src="./assets/img/poire.jpg" alt="" />
+                                <p className="text-center">{card.name}</p>
+                            </div>
+                        </ReactCardFlip>
+                        </>
                     )
                 })
             }
