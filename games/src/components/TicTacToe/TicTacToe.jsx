@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import './TicTacToe.css';
-import { setCount, setLock, reset } from '../../features/tictactoe/tictactoeSlice';
+import { setCount, setLock, reset, setDataCell } from '../../features/tictactoe/tictactoeSlice';
 
 // Import des images pour les icônes de X et O
 import circle_icon from '../../../public/assets/gif/giphyNaruto.gif';
@@ -29,10 +29,11 @@ export const Tictactoe = () => {
 
     // Création d'un tableau de références pour chaque boîte du jeu
     let box_array = Array.from({ length: 9 }, () => useRef(null));
-
+    
     // Fonction pour gérer le clic sur une boîte
     const toggle = (e, num) => {
         // Vérifier si le jeu est verrouillé
+        console.log(num);
         if (lock) {
             return;
         }
@@ -40,11 +41,16 @@ export const Tictactoe = () => {
         // Mettre à jour l'interface utilisateur et les données du jeu
         if (count % 2 === 0) {
             e.target.innerHTML = `<img src=${cross_icon} alt="cross" />`;
-            data[num] = "x";
+            
+            //data[num] = "x";
+            dispatch(setDataCell(num));
+            console.log(data[num]);
             dispatch(setCount(count+1));
         } else {
             e.target.innerHTML = `<img src=${circle_icon}>`;
-            data[num] = "o";
+            // data[num] = "o";
+            dispatch(setDataCell(num));
+            console.log(data[num]);
             dispatch(setCount(count+1));
         }
 
@@ -94,7 +100,7 @@ export const Tictactoe = () => {
     // Fonction pour réinitialiser le jeu
     const reset = () => {
         // Réinitialiser les données du jeu
-        data = ["", "", "", "", "", "", "", "", ""];
+        setDataCell({ type: "RESET" }); // data = ["", "", "", "", "", "", "", "", ""];
 
         // Déverrouiller le jeu
         dispatch(setLock(false));

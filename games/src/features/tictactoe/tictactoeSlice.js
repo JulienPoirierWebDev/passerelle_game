@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
     count: 0,
     lock: false,
@@ -26,13 +27,17 @@ export const gameTictactoeSlice = createSlice({
         },
 
         setDataCell: (state, action) => {
-            state.data[action.payload] = "x";
-        }
+            // Alterner entre "x" et "o"
+            console.log(state.data);
+            state.data[action.payload] += state.count % 2 == 0 ? "x" : "o";
+            // Incrémenter count après avoir défini la cellule
+            //state.count += 1;
+        },
 
             
         
     },
 })
 
-export const { setCount, setLock, reset, data } = gameTictactoeSlice.actions;
+export const { setCount, setLock, reset, setDataCell } = gameTictactoeSlice.actions;
 export default gameTictactoeSlice.reducer;
