@@ -28,8 +28,8 @@ export const gameTictactoeSlice = createSlice({
 
         setDataCell: (state, action) => {
             // Alterner entre "x" et "o"
-            console.log(state.data);
-            state.data[action.payload] += state.count % 2 == 0 ? "x" : "o";
+            console.log(action.payload);
+            state.data[action.payload] = state.count % 2 == 0 ? "x" : "o";
             // Incrémenter count après avoir défini la cellule
             //state.count += 1;
         },

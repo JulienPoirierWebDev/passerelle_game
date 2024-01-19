@@ -1,6 +1,6 @@
 
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './TicTacToe.css';
 import { setCount, setLock, reset, setDataCell } from '../../features/tictactoe/tictactoeSlice';
 
@@ -33,7 +33,7 @@ export const Tictactoe = () => {
     // Fonction pour gérer le clic sur une boîte
     const toggle = (e, num) => {
         // Vérifier si le jeu est verrouillé
-        console.log(num);
+        
         if (lock) {
             return;
         }
@@ -55,7 +55,7 @@ export const Tictactoe = () => {
         }
 
         // Vérifier s'il y a un gagnant après chaque coup
-        checkWin();
+        //checkWin();
     };
 
     // Fonction pour vérifier s'il y a un gagnant
@@ -98,9 +98,9 @@ export const Tictactoe = () => {
     };
 
     // Fonction pour réinitialiser le jeu
-    const reset = () => {
+    const resetData = () => {
         // Réinitialiser les données du jeu
-        setDataCell({ type: "RESET" }); // data = ["", "", "", "", "", "", "", "", ""];
+        dispatch(reset()); // data = ["", "", "", "", "", "", "", "", ""];
 
         // Déverrouiller le jeu
         dispatch(setLock(false));
@@ -113,7 +113,9 @@ export const Tictactoe = () => {
             box.current.innerHTML = "";
         });
     };
-
+    useEffect(() => {
+        checkWin();
+    }, [data])
     // Rendu JSX du composant Tic Tac Toe
     return (
         <div className='container'>
@@ -135,7 +137,7 @@ export const Tictactoe = () => {
                     ))}
                 </div>
             </div>
-            <button className='reset' onClick={() => { reset() }}>Reset</button>
+            <button className='reset' onClick={() => { resetData() }}>Reset</button>
         </div>
     );
 };
