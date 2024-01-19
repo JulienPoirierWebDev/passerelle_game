@@ -77,15 +77,26 @@ function MemoryBoard() {
         },
     ]
     const [shuffledCards, setShuffledCards] = useState(cards.sort(() => Math.random() - 0.5));
-    const [score, setScore] = useState(cards.length/2);
+    const [score, setScore] = useState(cards.length/2 + 2);
     const [choices, setChoices] = useState([]);
     const [playable, setPlayable] = useState(true);
 
     function reset() {
-        setShuffledCards(shuffledCards.sort(() => Math.random() - 0.5));
-        setScore(cards.length/2);
-        setChoices([]);
-        setPlayable(true);
+        console.log('here');
+        let reveledCards = [...shuffledCards];
+        const newTable = reveledCards.map((element) => {
+            element.flip = false;
+            element.find = false;
+            return element;
+        })
+        setShuffledCards(newTable);
+        setTimeout(() => {
+            reveledCards = [];
+            setShuffledCards(cards.sort(() => Math.random() - 0.5));
+            setScore(cards.length/2 + 2);
+            setChoices([]);
+            setPlayable(true);
+        }, 500);
     }
 
     function handleClick(card) {
@@ -149,7 +160,7 @@ function MemoryBoard() {
                     const style = card.flip ? 'cursor-not-allowed' : 'cursor-pointer';
                     return (
                         <>
-                        <ReactCardFlip isFlipped={card.flip} flipDirection="vertical">
+                        <ReactCardFlip isFlipped={card.flip} flipDirection="horizontal">
                             <div className="mx-2 my-2 h-72">
                                 <img className={style} onClick={() => handleClick(card)} key={card.id} src="./assets/img/card-flip.png" alt="" />
                             </div>
@@ -163,8 +174,10 @@ function MemoryBoard() {
             }
 
             </div>
-
-            <button onClick={reset}>Rejouer</button>
+            
+            <div className="flex justify-center">
+                <button className="inline-block px-8 py-4 text-lg text-[#e7cb5c] font-bold bg-[#7590bf] rounded hover:text-[#46d9fe] border-4 border-[#e7cb5c]" onClick={reset}>Rejouer</button>
+            </div>
         </>
     )
 }
