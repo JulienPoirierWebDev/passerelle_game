@@ -3,7 +3,7 @@ const devs = [
             "name": "Vincent",
             "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
             "link": "https://github.com/VChiofalo",
-            projects: ['GameChifumi']
+            projects: ['GameChifumi', 'Memory']
         },
         {
             "name": "Cecile",
@@ -27,7 +27,7 @@ const devs = [
             "name": "Anthony",
             "img": "https://image.smythstoys.com/original/desktop/139239.jpg",
             "link": "https://github.com/Lakym972",
-            projects: []
+            projects: ['Memory']
         },
         {
             "name": "Jason",
