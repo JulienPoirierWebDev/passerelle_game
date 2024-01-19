@@ -4,11 +4,11 @@ import Header from "../components/header/Header.jsx";
 
 const Layout = () => {
   return (
-    <>
-      <Header />
+    <div className="min-h-screen flex flex-col justify-between ">
+      <Header className="grow-0 flex-none" />
       <Outlet />
-      <Footer />
-    </>
+      <Footer className="grow-0 flex-none" />
+    </div>
   );
 };
 
