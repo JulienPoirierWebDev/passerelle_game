@@ -68,7 +68,6 @@ function MemoryBoard() {
     ]
     const [shuffledCards, setShuffledCards] = useState(cards.sort(() => Math.random() - 0.5));
     const [score, setScore] = useState(cards.length/2);
-    const [isFliped, setIsFliped] = useState(false);
     let choices = [];
 
     function handleClick(card) {
@@ -77,31 +76,33 @@ function MemoryBoard() {
         }
         choices.push(card);
         card.flip = true;
-        setIsFliped(true);
+        console.log(shuffledCards);
 
-        if (choices.length === 2) {
-            if (choices[0].name === choices[1].name) {
-                choices.map((element) => {
-                    const newTable = [...shuffledCards];
-                    newTable[shuffledCards.indexOf(element)].find = true;
-                    setShuffledCards(newTable);
-                })
-                choices = [];
-                console.log(shuffledCards);
-            } else {
-                choices.map((element) => {
-                    const newTable = [...shuffledCards];
-                    newTable[shuffledCards.indexOf(element)].flip = false;
-                    setShuffledCards(newTable);
-                })
-                choices = [];
-                setScore(score - 1);
-                if (score === 1) {
-                    alert('Game Over');
+        setTimeout(() => {
+            if (choices.length === 2) {
+                if (choices[0].name === choices[1].name) {
+                    choices.map((element) => {
+                        const newTable = [...shuffledCards];
+                        newTable[shuffledCards.indexOf(element)].find = true;
+                        setShuffledCards(newTable);
+                    })
+                    choices = [];
+                    console.log(shuffledCards);
+                } else {
+                    choices.map((element) => {
+                        const newTable = [...shuffledCards];
+                        newTable[shuffledCards.indexOf(element)].flip = false;
+                        setShuffledCards(newTable);
+                    })
+                    choices = [];
+                    setScore(score - 1);
+                    if (score === 1) {
+                        alert('Game Over');
+                    }
+                    console.log(shuffledCards);
                 }
-                console.log(shuffledCards);
             }
-        }
+        }, 3000)       
     }
     return (
         <>
@@ -114,13 +115,13 @@ function MemoryBoard() {
                     const style = card.flip ? 'cursor-not-allowed' : 'cursor-pointer';
                     return (
                         <>
-                        <ReactCardFlip isFlipped={isFliped} flipDirection="vertical">
+                        <ReactCardFlip isFlipped={card.flip} flipDirection="vertical">
                             <div className="mx-2 my-2">
                                 <img className={style} onClick={() => handleClick(card)} key={card.id} src="./assets/img/card-flip.png" alt="" />
                                 <p className="text-center">{card.name}</p>
                             </div>
                             <div className="mx-2 my-2">
-                                <img className={style} onClick={() => handleClick(card)} key={card.id} src="./assets/img/poire.jpg" alt="" />
+                                <img className={style} key={card.id} src="./assets/img/poire.jpg" alt="" />
                                 <p className="text-center">{card.name}</p>
                             </div>
                         </ReactCardFlip>
