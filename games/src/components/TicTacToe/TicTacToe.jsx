@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useRef, useState } from 'react';
 import './TicTacToe.css';
 import { setCount, setLock, reset, setDataCell } from '../../features/tictactoe/tictactoeSlice';
@@ -40,21 +38,17 @@ export const Tictactoe = () => {
         }
 
         // Mettre à jour l'interface utilisateur et les données du jeu
-        if (count % 2 === 0) {
-            e.target.innerHTML = `<img src=${cross_icon} alt="cross" />`;
-            
-            //data[num] = "x";
+        if (data[num] === "") {
+            // Si la cellule est vide, mettre à jour l'interface utilisateur et l'état du jeu
+            let newSymbol = count % 2 === 0 ? cross_icon : circle_icon;
+            e.target.innerHTML = `<img src=${newSymbol} alt="${newSymbol === cross_icon ? 'cross' : 'circle'}" />`;
             dispatch(setDataCell(num));
-            console.log(data[num]);
-            dispatch(setCount(count+1));
+            dispatch(setCount(count + 1));
         } else {
-            e.target.innerHTML = `<img src=${circle_icon}>`;
-            // data[num] = "o";
-            dispatch(setDataCell(num));
-            console.log(data[num]);
-            dispatch(setCount(count+1));
+            // Si la cellule est déjà occupée, ne rien faire
+            console.log("Cellule déjà occupée");
         }
-
+    
         // Vérifier s'il y a un gagnant après chaque coup
         //checkWin();
     };

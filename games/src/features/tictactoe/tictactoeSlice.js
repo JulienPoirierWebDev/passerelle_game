@@ -27,17 +27,17 @@ export const gameTictactoeSlice = createSlice({
         },
 
         setDataCell: (state, action) => {
-            // Alterner entre "x" et "o"
-            console.log(action.payload);
-            state.data[action.payload] = state.count % 2 == 0 ? "x" : "o";
-            // Incrémenter count après avoir défini la cellule
-            //state.count += 1;
+            const cellIndex = action.payload;
+            // Vérifier si la cellule est déjà occupée
+            if (state.data[cellIndex] === "") {
+                // Si la cellule est vide, alterner entre "x" et "o"
+                state.data[cellIndex] = state.count % 2 === 0 ? "x" : "o";
+                // Incrémenter le count uniquement si la cellule était vide
+                state.count += 1;
+            }
         },
-
-            
         
     },
-})
-
+});
 export const { setCount, setLock, reset, setDataCell } = gameTictactoeSlice.actions;
 export default gameTictactoeSlice.reducer;
